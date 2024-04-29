@@ -1,0 +1,41 @@
+///
+section .data
+        x dd 1
+        y dd 2
+        z dd 3
+        mov DWORD[ebp-4], eax
+
+section .bss
+        result resb 1
+
+
+section .text
+        global _start
+
+
+_addition:              ;function for addition, answer for the addition should be  1+2+3=6 
+        push ebp
+        mov ebp, esp
+        sub esp,4
+        mov eax, DWORD[ebp+16]  ;moving up the stack to set eax, 1
+        mov ebx, DWORD[ebp+12]  ;setting  ebx, 2
+        mov ecx, DWORD[ebp+8]   ;setting  ecx,3 
+        add eax, ebx            ;adding 1+2
+        add eax,ecx             ;adding 3+3
+        mov [result], eax       ;saving answer in result
+        leave
+        ret
+
+_start:                 ;main funciton  
+        push DWORD[x]   
+        push DWORD[y]
+        push DWORD[z]
+        call _addition  ;calling back the _addition function 
+
+
+
+
+
+        mov eax,1
+        int 0x80
+///

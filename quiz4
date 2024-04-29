@@ -15,8 +15,8 @@ section .text
 
 _addition:              ;function for addition, answer for the addition should be  1+2+3=6 
         push ebp
-        mov ebp, esp
-        sub esp,4
+        mov ebp, esp        ;setup base pointer
+        sub esp,4            ;allocating space on stack
         mov eax, DWORD[ebp+16]  ;moving up the stack to set eax, 1
         mov ebx, DWORD[ebp+12]  ;setting  ebx, 2
         mov ecx, DWORD[ebp+8]   ;setting  ecx,3 
